@@ -102,24 +102,44 @@
             <h3>SHIPPING LABEL</h3>
         </div>
         <div class="label-body">
-            <!-- Data will be inserted here by Flask -->
-            <p><strong>👤 អតិថិជន:</strong> {{ name }}</p>
-            <p><strong>📞 ទូរស័ព្ទ:</strong> {{ phone }}</p>
-            <p class="total-price"><strong>💰 សរុប:</strong> ${{ total }}</p>
+            <!-- Data will be inserted here by JavaScript -->
+            <p><strong>👤 អតិថិជន:</strong> <span id="name"></span></p>
+            <p><strong>📞 ទូរស័ព្ទ:</strong> <span id="phone"></span></p>
+            <p class="total-price"><strong>💰 សរុប:</strong> $<span id="total"></span></p>
         </div>
         <div class="label-footer">
-            <p><strong>Payment:</strong> {{ payment }}</p>
+            <p><strong>Payment:</strong> <span id="payment"></span></p>
         </div>
     </div>
 
     <button onclick="window.print();" class="print-button no-print">🖨️ Print Again</button>
 
     <script>
-        // Automatically trigger the print dialog when the page loads.
+        // This script runs when the page is loaded.
         window.onload = function() {
+            // Create a URLSearchParams object from the current URL's query string
+            const params = new URLSearchParams(window.location.search);
+
+            // Get the data from the URL, providing a default value if not found
+            const name = params.get('name') || 'N/A';
+            const phone = params.get('phone') || 'N/A';
+            const total = params.get('total') || '0.00';
+            const payment = params.get('payment') || 'N/A';
+
+            // Find the elements in the HTML and update their content
+            document.getElementById('name').textContent = name;
+            document.getElementById('phone').textContent = phone;
+            document.getElementById('total').textContent = total;
+            document.getElementById('payment').textContent = payment;
+            
+            // Automatically trigger the print dialog
             window.print();
+
+            // After printing (or canceling), redirect to a blank page to simulate closing the tab
+            window.location.href = 'about:blank';
         };
     </script>
 
 </body>
 </html>
+
