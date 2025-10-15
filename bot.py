@@ -6,7 +6,7 @@ from telegram.ext import Updater, MessageHandler, Filters, CallbackContext
 
 # --- Configuration ---
 # Replace with your actual Telegram Bot Token
-TELEGRAM_TOKEN = "YOUR_BOT_TOKEN"
+TELEGRAM_TOKEN = "8076401419:AAEIBzxnT3XGRA96XIVspbxKpLHfywFqm9k"
 
 # Option 1: URL for the Flask server (recommended)
 # Ensure the server.py is running.
