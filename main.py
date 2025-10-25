@@ -3,19 +3,18 @@ import io
 import asyncio
 import os
 from aiogram import Bot, Dispatcher, types
-from aiogram.filters import CommandStart
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from reportlab.lib.pagesizes import mm
 from reportlab.pdfgen import canvas
 
-# Get Bot Token from environment variable
+# Telegram Bot Token
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
 
 # ==============================
-# Regex for message pattern
+# Regex to detect your message format
 # ==============================
 pattern = re.compile(
     r"✅សូមបងពិនិត្យ.*?\n\n"
@@ -43,7 +42,6 @@ async def check_messages(message: types.Message):
     if match:
         customerName, phone, location, address, total, payment, shipping = match.groups()
 
-        # Create button
         kb = InlineKeyboardBuilder()
         kb.button(
             text="🖨 Print Label",
@@ -60,7 +58,7 @@ async def check_messages(message: types.Message):
             print("Edit error:", e)
 
 # ==============================
-# Callback for printing
+# Callback for printing label
 # ==============================
 @dp.callback_query()
 async def print_label(callback: types.CallbackQuery):
