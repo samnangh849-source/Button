@@ -1,3 +1,7 @@
+
+python_version >= "3.11"
 aiogram==3.4.1
 reportlab==4.1.0
 typing-extensions==4.12.2
+aiohttp~=3.9.0
+aiofiles~=23.2.1
